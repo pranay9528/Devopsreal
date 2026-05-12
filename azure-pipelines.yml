@@ -1,0 +1,17 @@
+trigger:
+- main
+
+pool:
+  name: Default   # self-hosted agent
+
+steps:
+- script: |
+    echo "Building Docker image"
+    docker build -t myapp .
+
+    echo "Tagging image"
+    docker tag myapp pranay9528/myapp:latest
+
+    echo "Pushing image"
+    docker push pranay9528/myapp:latest
+  displayName: Build and Push Docker Image

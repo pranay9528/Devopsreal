@@ -1,0 +1,16 @@
+version: "3.8"
+
+services:
+  app:
+    build: .
+    container_name: myapp_container
+    depends_on:
+      - db
+    environment:
+      - DB_HOST=db
+
+  db:
+    image: ubuntu
+    container_name: mydb_container
+    command: ["sleep", "1000"]
+    
