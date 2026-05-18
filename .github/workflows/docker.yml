@@ -24,3 +24,6 @@ jobs:
 
     - name: Push Docker image
       run: docker push pranay9528/myapp:latest
+    - name: deploy to kubernetes
+      run: |
+        kubectl apply -f deployment.yaml

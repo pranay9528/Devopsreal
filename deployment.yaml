@@ -15,6 +15,5 @@ spec:
       containers:
         - name: myapp
           image: pranay9528/myapp:latest
-          env:
-            - name: DB_HOST
-              value: "google.com"
+          ports:
+            - containerPort: 80
