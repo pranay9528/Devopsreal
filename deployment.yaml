@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: myapp-deploy
 spec:
-  replicas: 1
+  replicas: 2
   selector:
     matchLabels:
       app: myapp
@@ -14,6 +14,6 @@ spec:
     spec:
       containers:
         - name: myapp
-          image: pranay9528/myapp:latest
+          image: 702147683442.dkr.ecr.eu-west-2.amazonaws.com/myapp:latest
           ports:
             - containerPort: 80

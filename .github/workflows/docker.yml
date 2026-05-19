@@ -22,14 +22,31 @@ jobs:
           aws-region: ${{ secrets.AWS_REGION }}
 
       - name: Login to ECR
-        run: |
-          aws ecr get-login-password --region eu-west-2 | docker login --username AWS --password-stdin 702147683442.dkr.ecr.eu-west-2.amazonaws.com
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
 
       - name: Build Docker Image
-        run: docker build -t myapp .
+        run: |
+          docker build -t myapp .
 
       - name: Tag Docker Image
-        run: docker tag myapp:latest 702147683442.dkr.ecr.eu-west-2.amazonaws.com/myapp:latest
+        run: |
+          docker tag myapp:latest 702147683442.dkr.ecr.eu-west-2.amazonaws.com/myapp:latest
 
       - name: Push Docker Image
-        run: docker push 702147683442.dkr.ecr.eu-west-2.amazonaws.com/myapp:latest
+        run: |
+          docker push 702147683442.dkr.ecr.eu-west-2.amazonaws.com/myapp:latest
+
+      - name: Install kubectl
+        uses: azure/setup-kubectl@v4
+
+      - name: Setup kubeconfig
+        run: |
+          mkdir -p ~/.kube
+          echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
+
+      - name: Deploy to Kubernetes
+        run: |
+          kubectl apply -f deployment.yaml
+          kubectl apply -f service.yaml
+          kubectl rollout restart deployment myapp-deploy
