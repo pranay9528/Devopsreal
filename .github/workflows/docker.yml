@@ -37,16 +37,4 @@ jobs:
         run: |
           docker push 702147683442.dkr.ecr.eu-west-2.amazonaws.com/myapp:latest
 
-      - name: Install kubectl
-        uses: azure/setup-kubectl@v4
-
-      - name: Setup kubeconfig
-        run: |
-          mkdir -p ~/.kube
-          echo "${{ secrets.KUBE_CONFIG }}" > ~/.kube/config
-
-      - name: Deploy to Kubernetes
-        run: |
-          kubectl apply -f deployment.yaml
-          kubectl apply -f service.yaml
-          kubectl rollout restart deployment myapp-deploy
+    
