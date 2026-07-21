@@ -1,1 +1,12 @@
+# Terraform
+**/.terraform/
+**/*.tfstate
+**/*.tfstate.*
+**/.terraform.lock.hcl
+# SSH Keys
+**/*.pem
+# Terraform Variables
+**/*.tfvars
+# macos
+.DS_Store
 myagent/
