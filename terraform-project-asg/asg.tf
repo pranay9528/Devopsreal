@@ -16,7 +16,66 @@ resource "aws_launch_template" "web" {
     systemctl enable nginx
     systemctl start nginx
     mkdir -p /var/www/html
-    echo "Hello form Auto scaling Group" > /var/www/html/index.html
+    cat > /var/www/html/index.html <<'HTML'
+<!DOCTYPE html>
+<html>
+<head>
+    <title>KumarStack</title>
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f7fb;
+            text-align:center;
+            padding-top:80px;
+        }
+
+        h1{
+            color:#1f2937;
+            font-size:48px;
+        }
+
+        p{
+            color:#555;
+            font-size:22px;
+        }
+
+        .card{
+            width:700px;
+            margin:auto;
+            background:white;
+            padding:40px;
+            border-radius:15px;
+            box-shadow:0 10px 30px rgba(0,0,0,.1);
+        }
+
+        .button{
+            display:inline-block;
+            margin-top:25px;
+            padding:12px 25px;
+            background:#2563eb;
+            color:white;
+            text-decoration:none;
+            border-radius:8px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="card">
+<h1>KumarStack</h1>
+
+<p>AWS • Terraform • GitHub Actions • Docker • Kubernetes</p>
+
+<p>This website is deployed automatically using Terraform and an Auto Scaling Group.</p>
+
+<a class="button" href="#">Projects Coming Soon</a>
+
+</div>
+
+</body>
+</html>
+HTML
     EOF
   )
 }
