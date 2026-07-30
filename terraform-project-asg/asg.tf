@@ -2,7 +2,7 @@ resource "aws_launch_template" "web" {
   name_prefix   = "terraform-web"
   image_id      = var.ami_id
   instance_type = var.instance_type
-  key_name = "terraform-key"
+  key_name      = "terraform-key"
   vpc_security_group_ids = [
     aws_security_group.my_sg.id
   ]
