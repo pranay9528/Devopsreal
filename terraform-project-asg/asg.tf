@@ -36,16 +36,16 @@ resource "aws_autoscaling_group" "web_asg" {
     id      = aws_launch_template.web.id
     version = "$Latest"
   }
-   
-    tag {
-  key                 = "Application"
-  value               = "KumarStack"
-  propagate_at_launch = true
-}
 
-tag {
-  key                 = "Environment"
-  value               = "Production"
-  propagate_at_launch = true
-}
+  tag {
+    key                 = "Application"
+    value               = "KumarStack"
+    propagate_at_launch = true
   }
+
+  tag {
+    key                 = "Environment"
+    value               = "Production"
+    propagate_at_launch = true
+  }
+}
