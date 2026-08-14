@@ -9,7 +9,7 @@ resource "aws_launch_template" "web" {
   iam_instance_profile {
     name = aws_iam_instance_profile.ec2_profile.name
   }
-  user_data = base64encode(file("user-data.sh"))
+  user_data = base64encode(file("${path.module}/scripts/user-data.sh"))
 }
 resource "aws_lb_target_group" "web_tg" {
   name     = "asg-target-group"
@@ -36,4 +36,16 @@ resource "aws_autoscaling_group" "web_asg" {
     id      = aws_launch_template.web.id
     version = "$Latest"
   }
+   
+    tag {
+  key                 = "Application"
+  value               = "KumarStack"
+  propagate_at_launch = true
 }
+
+tag {
+  key                 = "Environment"
+  value               = "Production"
+  propagate_at_launch = true
+}
+  }
