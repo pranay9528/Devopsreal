@@ -1,0 +1,8 @@
+version: "3.9"
+services:
+
+  kumarstack:
+    image: kumarstack:v1
+    container_name: kumarstack
+    ports:
+      - "8080:80"
