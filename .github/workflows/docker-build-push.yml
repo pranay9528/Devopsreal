@@ -23,7 +23,7 @@ jobs:
       - name: Build Docker image
         run: |
           docker build \
-            -t ${{ secrets.DOCKERHUB_USERNAME }}/kumarstack:${{ github.sha }} .
+            -t ${{ secrets.DOCKERHUB_USERNAME }}/kumarstack:${{ github.sha }} ./terraform-project-asg
 
       - name: Push Docker image
         run: |
