@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata: 
+  name: kumarstack-config
+data:
+  APP_NAME: "kumarstack"
+  APP_ENV: "development"

@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: pod
+metadata: 
+  name: kumarstack
+spec: 
+  containers:
+    - name: kumarstack
+      image: pranay9528/kumarstack:8cd8a7654bf968e787fb15a4ecc403fd323cf485@sha256:8e2d511ecdbdf1440f6f7aa11ebd794f8ec97ab72affe526e9ddc52cb43adf7d 
+      ports:
+        - containerPort: 80

@@ -1,0 +1,19 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: kumarstack-alerts
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+    - name: kumarstack
+      rules:
+        - alert: KumarStackRestarting
+          expr: increase(kube_pod_container_status_restarts_total{namespace="default"}[5m]) > 0
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "KumarStack container is restarted"
+            description: " A KumarStack container has restarted within the last 5 minutes."
