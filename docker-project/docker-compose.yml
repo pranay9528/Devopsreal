@@ -1,16 +1,8 @@
-version: "3.8"
-
+version: "3.9"
 services:
-  app:
-    build: .
-    container_name: myapp_container
-    depends_on:
-      - db
-    environment:
-      - DB_HOST=db
 
-  db:
-    image: ubuntu
-    container_name: mydb_container
-    command: ["sleep", "1000"]
-    
+  kumarstack:
+    image: kumarstack:v1
+    container_name: kumarstack
+    ports:
+      - "8080:80"

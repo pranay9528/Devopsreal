@@ -1,0 +1,15 @@
+services:
+  web:
+    image: nginx:latest
+    container_name: compose-web
+    ports:
+      - "8080:80"
+  redis:
+    image: redis:latest
+    container_name: compose-redis
+  database:
+    image: mysql:8
+    container_name: compose-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: devpassword
+      MYSQL_DATABASE: kumarstack

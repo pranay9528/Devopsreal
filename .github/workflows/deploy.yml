@@ -28,5 +28,5 @@ jobs:
           aws ssm send-command \
             --document-name "AWS-RunShellScript" \
             --targets "Key=tag:Application,Values=KumarStack" \
-            --parameters 'commands=["bash /home/ubuntu/Devopsreal/terraform-project-asg/scripts/deploy.sh"]' \
+            --parameters 'commands=["cd /home/ubuntu/Devopsreal && git pull --ff-only origin main && bash /home/ubuntu/Devopsreal/docker-project/scripts/deploy.sh"]' \
             --comment "GitHub Actions Deployment"
